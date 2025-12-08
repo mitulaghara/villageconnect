@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Your Product - VillageConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-hands-helping"></i>
+                <span>VillageConnect</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="products.html"><i class="fas fa-store"></i> Products</a>
+                <a href="post-product.html" class="active"><i class="fas fa-plus-circle"></i> Post Product</a>
+                <a href="dashboard.html"><i class="fas fa-user"></i> Dashboard</a>
+                <div class="auth-buttons">
+                    <button id="loginBtn" class="btn btn-outline">Login</button>
+                    <button id="registerBtn" class="btn btn-primary">Register</button>
+                </div>
+                <button id="logoutBtn" class="btn btn-danger" style="display: none;">Logout</button>
+            </div>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="post-product-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Post Your Product</h1>
+                <p>Share your local products with buyers across the region</p>
+            </div>
+
+            <div class="form-container">
+                <div class="form-steps">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-info">
+                            <span class="step-title">Product Details</span>
+                            <span class="step-desc">Basic information</span>
+                        </div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-info">
+                            <span class="step-title">Photos & Price</span>
+                            <span class="step-desc">Add images & pricing</span>
+                        </div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-info">
+                            <span class="step-title">Contact Info</span>
+                            <span class="step-desc">How buyers can reach you</span>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="postProductForm">
+                    <!-- Step 1: Product Details -->
+                    <div class="form-step active" id="step1">
+                        <div class="form-section">
+                            <h3><i class="fas fa-info-circle"></i> Product Information</h3>
+
+                            <div class="form-group">
+                                <label for="productTitle" class="required">Product Title</label>
+                                <input type="text" id="productTitle" required
+                                    placeholder="e.g., Organic Wheat, Handmade Pottery">
+                                <div class="form-help">Choose a clear, descriptive title</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productCategory" class="required">Category</label>
+                                <select id="productCategory" required>
+                                    <option value="">Select Category</option>
+                                    <option value="agriculture">Agriculture (Crops, Grains)</option>
+                                    <option value="handicrafts">Handicrafts (Handmade Items)</option>
+                                    <option value="livestock">Livestock (Animals, Poultry)</option>
+                                    <option value="fresh_produce">Fresh Produce (Vegetables, Fruits)</option>
+                                    <option value="equipment">Equipment (Tools, Machinery)</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productDescription" class="required">Description</label>
+                                <textarea id="productDescription" required rows="5"
+                                    placeholder="Describe your product in detail. Include quality, quantity, special features, etc."></textarea>
+                                <div class="form-help">Detailed descriptions attract more buyers</div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-primary next-step" data-next="2">Next: Photos &
+                                    Price <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Photos & Price -->
+                    <div class="form-step" id="step2">
+                        <div class="form-section">
+                            <h3><i class="fas fa-camera"></i> Photos & Pricing</h3>
+
+                            <div class="form-group">
+                                <label for="productImages">Product Photos</label>
+                                <div class="upload-area" id="uploadArea">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Drag & drop photos here or click to browse</p>
+                                    <p class="upload-info">JPG, PNG, GIF files. Max 5MB per file. Up to 5 photos.</p>
+                                    <input type="file" id="productImages" multiple accept="image/*"
+                                        style="display: none;">
+                                </div>
+                                <div class="image-preview" id="imagePreview">
+                                    <!-- Image previews will be added here -->
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productPrice" class="required">Price (₹)</label>
+                                <input type="number" id="productPrice" required min="1" placeholder="e.g., 500">
+                                <div class="form-help">Enter price in Indian Rupees</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productQuantity">Quantity / Unit</label>
+                                <div class="quantity-unit">
+                                    <input type="number" id="productQuantity" min="1" placeholder="e.g., 10">
+                                    <select id="productUnit">
+                                        <option value="kg">kg</option>
+                                        <option value="gram">gram</option>
+                                        <option value="liter">liter</option>
+                                        <option value="piece">piece</option>
+                                        <option value="dozen">dozen</option>
+                                        <option value="bundle">bundle</option>
+                                        <option value="other">other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline prev-step" data-prev="1"><i
+                                        class="fas fa-arrow-left"></i> Back</button>
+                                <button type="button" class="btn btn-primary next-step" data-next="3">Next: Contact Info
+                                    <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Contact Info -->
+                    <div class="form-step" id="step3">
+                        <div class="form-section">
+                            <h3><i class="fas fa-phone"></i> Contact Information</h3>
+
+                            <div class="form-group">
+                                <label for="productContact" class="required">Contact Phone Number</label>
+                                <input type="tel" id="productContact" required placeholder="e.g., 9876543210">
+                                <div class="form-help">Buyers will contact you on this number</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productLocation">Product Location</label>
+                                <input type="text" id="productLocation"
+                                    placeholder="e.g., Near panchayat office, Main market">
+                                <div class="form-help">Specific location helps local buyers</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productAvailability">Availability</label>
+                                <select id="productAvailability">
+                                    <option value="available">Available Now</option>
+                                    <option value="limited">Limited Stock</option>
+                                    <option value="preorder">Pre-order Only</option>
+                                    <option value="seasonal">Seasonal</option>
+                                </select>
+                            </div>
+
+                            <div class="form-review">
+                                <h4><i class="fas fa-check-circle"></i> Review Your Post</h4>
+                                <div class="review-card">
+                                    <div class="review-item">
+                                        <strong>Title:</strong> <span id="reviewTitle">-</span>
+                                    </div>
+                                    <div class="review-item">
+                                        <strong>Category:</strong> <span id="reviewCategory">-</span>
+                                    </div>
+                                    <div class="review-item">
+                                        <strong>Price:</strong> ₹<span id="reviewPrice">-</span>
+                                    </div>
+                                    <div class="review-item">
+                                        <strong>Photos:</strong> <span id="reviewPhotos">0</span> uploaded
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline prev-step" data-prev="2"><i
+                                        class="fas fa-arrow-left"></i> Back</button>
+                                <button type="submit" class="btn btn-primary" id="submitBtn">
+                                    <i class="fas fa-paper-plane"></i> Post Product Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="form-tips">
+                    <h4><i class="fas fa-lightbulb"></i> Tips for Better Results</h4>
+                    <ul>
+                        <li><strong>Clear Photos:</strong> Take photos in good light from multiple angles</li>
+                        <li><strong>Honest Description:</strong> Be accurate about quality and condition</li>
+                        <li><strong>Fair Pricing:</strong> Research similar products for competitive pricing</li>
+                        <li><strong>Quick Response:</strong> Respond to buyer inquiries promptly</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Product Posted Successfully!</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <i class="fas fa-check-circle success-icon"></i>
+                <p>Your product has been posted successfully and is now visible to all users.</p>
+                <p>All users will receive a notification about your new product.</p>
+                <div class="modal-actions">
+                    <a href="products.html" class="btn btn-primary">View All Products</a>
+                    <a href="dashboard.html" class="btn btn-outline">Go to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VillageConnect</h3>
+                    <p>Bridging rural producers with urban consumers through technology.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/mitulaghara" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/mitul-aghara-602a72332/" target="_blank"><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="products.html">Products</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="contact.html">Help Center</a>
+                    <a href="#">Community Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> support@villageconnect.com</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Gujarat, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 VillageConnect. All rights reserved. | Aghara Mitul</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login/Register Modals -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login to VillageConnect</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+                <p class="text-center mt-3">Don't have an account? <a href="#" id="switchToRegister">Register here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Your Account</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email Address</label>
+                        <input type="email" id="registerEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPhone">Phone Number</label>
+                        <input type="tel" id="registerPhone" required placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerVillage">Village Name</label>
+                        <input type="text" id="registerVillage" required placeholder="Enter your village name">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" required placeholder="Create a password">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Confirm Password</label>
+                        <input type="password" id="registerConfirmPassword" required
+                            placeholder="Confirm your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                </form>
+                <p class="text-center mt-3">Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/post-product.js"></script>
+</body>
+
+</html>

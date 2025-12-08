@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VillageConnect - Connect Local Producers with Buyers</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-hands-helping"></i>
+                <span>VillageConnect</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="products.html"><i class="fas fa-store"></i> Products</a>
+                <a href="post-product.html"><i class="fas fa-plus-circle"></i> Post Product</a>
+                <a href="dashboard.html"><i class="fas fa-user"></i> Dashboard</a>
+                <div class="auth-buttons">
+                    <button id="loginBtn" class="btn btn-outline">Login</button>
+                    <button id="registerBtn" class="btn btn-primary">Register</button>
+                </div>
+                <button id="logoutBtn" class="btn btn-danger" style="display: none;">Logout</button>
+            </div>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Notification Bell -->
+    <div class="notification-bell">
+        <i class="fas fa-bell"></i>
+        <span class="notification-count">0</span>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div class="notifications-panel">
+        <div class="notifications-header">
+            <h3>Notifications</h3>
+            <button class="close-notifications"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="notifications-list">
+            <!-- Notifications will appear here -->
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Connect Local Producers with Buyers</h1>
+                <p>VillageConnect bridges the gap between rural producers and urban consumers. Share, discover, and
+                    trade local products directly.</p>
+                <div class="hero-buttons">
+                    <a href="post-product.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-plus"></i> Post Your Product
+                    </a>
+                    <a href="products.html" class="btn btn-outline btn-large">
+                        <i class="fas fa-store"></i> Browse Products
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- <img src="https://cdn.pixabay.com/photo/2015/12/09/16/32/farm-1084989_640.jpg" alt="Local Products"> -->
+                <img src="./img/Banner-1.png" alt="Local Products">
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2>Browse by Category</h2>
+            <div class="category-grid">
+                <div class="category-card" data-category="agriculture">
+                    <i class="fas fa-tractor"></i>
+                    <h3>Agriculture</h3>
+                    <p>Crops, grains, seeds</p>
+                </div>
+                <div class="category-card" data-category="handicrafts">
+                    <i class="fas fa-hands"></i>
+                    <h3>Handicrafts</h3>
+                    <p>Handmade items, art</p>
+                </div>
+                <div class="category-card" data-category="livestock">
+                    <i class="fas fa-cow"></i>
+                    <h3>Livestock</h3>
+                    <p>Animals, poultry</p>
+                </div>
+                <div class="category-card" data-category="fresh_produce">
+                    <i class="fas fa-apple-alt"></i>
+                    <h3>Fresh Produce</h3>
+                    <p>Vegetables, fruits</p>
+                </div>
+                <div class="category-card" data-category="equipment">
+                    <i class="fas fa-tools"></i>
+                    <h3>Equipment</h3>
+                    <p>Farming tools</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Products -->
+    <section class="recent-products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest Products</h2>
+                <a href="products.html" class="view-all">View All</a>
+            </div>
+            <div class="products-grid" id="recentProducts">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <h3 id="totalUsers">0</h3>
+                <p>Active Users</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-box"></i>
+                <h3 id="totalProducts">0</h3>
+                <p>Products Listed</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-hands-helping"></i>
+                <h3 id="totalVillages">0</h3>
+                <p>Villages Connected</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-handshake"></i>
+                <h3>500+</h3>
+                <p>Successful Trades</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How VillageConnect Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <i class="fas fa-user-plus"></i>
+                    <h3>Register Free</h3>
+                    <p>Create your account in minutes. No fees, no commissions.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <i class="fas fa-camera"></i>
+                    <h3>Post Products</h3>
+                    <p>Upload photos, add details, and set your price.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <i class="fas fa-bell"></i>
+                    <h3>Get Notified</h3>
+                    <p>Buyers get instant notifications of new products.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <i class="fas fa-handshake"></i>
+                    <h3>Connect & Trade</h3>
+                    <p>Communicate directly and complete the transaction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VillageConnect</h3>
+                    <p>Bridging rural producers with urban consumers through technology.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/mitulaghara" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/mitul-aghara-602a72332/" target="_blank"><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="products.html">Products</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="contact.html">Help Center</a>
+                    <a href="#">Community Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> support@villageconnect.com</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Gujarat, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 VillageConnect. All rights reserved. | Aghara Mitul</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login to VillageConnect</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+                <p class="text-center mt-3">Don't have an account? <a href="#" id="switchToRegister">Register here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Your Account</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email Address</label>
+                        <input type="email" id="registerEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPhone">Phone Number</label>
+                        <input type="tel" id="registerPhone" required placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerVillage">Village Name</label>
+                        <input type="text" id="registerVillage" required placeholder="Enter your village name">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" required placeholder="Create a password">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Confirm Password</label>
+                        <input type="password" id="registerConfirmPassword" required
+                            placeholder="Confirm your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                </form>
+                <p class="text-center mt-3">Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Home page specific JavaScript
+        document.addEventListener('DOMContentLoaded', function () {
+            const API_BASE_URL = window.API_BASE_URL || 'http://localhost:5001/api';
+            const BACKEND_URL = window.BACKEND_URL || 'http://localhost:5001';
+
+            // Category cards click event
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function () {
+                    const category = this.getAttribute('data-category');
+                    window.location.href = `products.html?category=${category}`;
+                });
+            });
+
+            // Load recent products
+            loadRecentProducts();
+            loadStats();
+        });
+
+        async function loadRecentProducts() {
+            const API_BASE_URL = window.API_BASE_URL || 'http://localhost:5001/api';
+            try {
+                const response = await fetch(`${API_BASE_URL}/products?limit=8`);
+                const data = await response.json();
+
+                if (response.ok && data.products) {
+                    displayProducts(data.products, 'recentProducts');
+                }
+            } catch (error) {
+                console.error('Error loading recent products:', error);
+            }
+        }
+
+        async function loadStats() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/stats`);
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('totalUsers').textContent = data.totalUsers || '0';
+                    document.getElementById('totalProducts').textContent = data.totalProducts || '0';
+                    document.getElementById('totalVillages').textContent = data.totalVillages || '0';
+                }
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        function displayProducts(products, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            products.forEach(product => {
+                const productCard = createProductCard(product);
+                container.appendChild(productCard);
+            });
+        }
+
+        function createProductCard(product) {
+            const div = document.createElement('div');
+            div.className = 'product-card';
+
+            const BACKEND_URL = window.BACKEND_URL || 'http://localhost:5001';
+
+            let imageUrl = 'https://cdn.pixabay.com/photo/2015/12/09/16/32/farm-1084989_640.jpg';
+
+            if (product.images && product.images.length > 0) {
+                const imagePath = product.images[0];
+                if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+                    imageUrl = imagePath;
+                } else {
+                    imageUrl = `${BACKEND_URL}/uploads/${imagePath}`;
+                }
+            }
+
+            div.innerHTML = `
+                <div class="product-image">
+                    <img src="${imageUrl}" alt="${product.title}">
+                </div>
+                <div class="product-info">
+                    <h3>${product.title}</h3>
+                    <p class="product-description">${product.description.substring(0, 80)}${product.description.length > 80 ? '...' : ''}</p>
+                    <div class="product-price">₹${product.price}</div>
+                    <div class="product-meta">
+                        <span><i class="fas fa-user"></i> ${product.userName}</span>
+                        <span><i class="fas fa-map-marker-alt"></i> ${product.userVillage}</span>
+                    </div>
+                    <a href="product-detail.html?id=${product._id}" class="btn btn-outline btn-block mt-2">View Details</a>
+                </div>
+            `;
+
+            return div;
+        }
+    </script>
+</body>
+
+</html>

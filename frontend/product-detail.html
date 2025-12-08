@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - VillageConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-hands-helping"></i>
+                <span>VillageConnect</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="products.html"><i class="fas fa-store"></i> Products</a>
+                <a href="post-product.html"><i class="fas fa-plus-circle"></i> Post Product</a>
+                <a href="dashboard.html"><i class="fas fa-user"></i> Dashboard</a>
+                <div class="auth-buttons">
+                    <button id="loginBtn" class="btn btn-outline">Login</button>
+                    <button id="registerBtn" class="btn btn-primary">Register</button>
+                </div>
+                <button id="logoutBtn" class="btn btn-danger" style="display: none;">Logout</button>
+            </div>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="product-detail-page">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> <i class="fas fa-chevron-right"></i>
+                <a href="products.html">Products</a> <i class="fas fa-chevron-right"></i>
+                <span>Product Details</span>
+            </div>
+
+            <div class="product-detail-container">
+                <!-- Product Images -->
+                <div class="product-gallery">
+                    <div class="main-image" id="mainImage">
+                        <div class="no-image">
+                            <i class="fas fa-image"></i>
+                            <p>No image available</p>
+                        </div>
+                    </div>
+
+                    <div class="thumbnail-images" id="thumbnailImages">
+                        <!-- Thumbnails will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Product Information -->
+                <div class="product-info">
+                    <div class="product-header">
+                        <h1 id="productTitle">Loading Product...</h1>
+                        <div class="product-meta">
+                            <span class="product-category" id="productCategory">Category</span>
+                            <span class="product-status" id="productStatus">Available</span>
+                        </div>
+                    </div>
+
+                    <div class="product-price-section">
+                        <div class="price" id="productPrice">₹0</div>
+                        <div class="posted-date" id="postedDate">Posted today</div>
+                    </div>
+
+                    <div class="product-description">
+                        <h3>Description</h3>
+                        <p id="productDescription">Loading description...</p>
+                    </div>
+
+                    <div class="product-details">
+                        <h3>Product Details</h3>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <i class="fas fa-user"></i>
+                                <div>
+                                    <strong>Seller</strong>
+                                    <p id="sellerName">Loading...</p>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <strong>Location</strong>
+                                    <p id="sellerLocation">Loading...</p>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar"></i>
+                                <div>
+                                    <strong>Posted</strong>
+                                    <p id="productDate">Loading...</p>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-box"></i>
+                                <div>
+                                    <strong>Condition</strong>
+                                    <p id="productCondition">New</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="btn btn-primary btn-large" id="contactBtn">
+                            <i class="fas fa-phone"></i> Contact Seller
+                        </button>
+                        <button class="btn btn-outline" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="btn btn-outline" id="saveBtn">
+                            <i class="far fa-bookmark"></i> Save
+                        </button>
+                        <button class="btn btn-outline" id="shareBtn">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                    </div>
+
+                    <!-- Seller Information -->
+                    <div class="seller-info">
+                        <h3>About the Seller</h3>
+                        <div class="seller-card">
+                            <div class="seller-avatar" id="sellerAvatar">
+                                S
+                            </div>
+                            <div class="seller-details">
+                                <h4 id="sellerFullName">Seller Name</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> <span id="sellerVillage">Village</span></p>
+                                <p><i class="fas fa-user-check"></i> Member since <span id="memberSince">2025</span></p>
+                                <div class="seller-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>(12 reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info">
+                            <p><strong>Contact Number:</strong> <span id="contactNumber">Loading...</span></p>
+                            <p><strong>Response Time:</strong> Usually within 1 hour</p>
+                            <div class="contact-buttons">
+                                <a href="#" class="btn btn-primary" id="callLink">
+                                    <i class="fas fa-phone"></i> Call Now
+                                </a>
+                                <button class="btn btn-success" id="whatsappLink">
+                                    <i class="fab fa-whatsapp"></i> Message on WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Button (for logged in users) -->
+                    <div class="report-section" id="reportSection" style="display: none;">
+                        <button class="btn btn-text" id="reportBtn">
+                            <i class="fas fa-flag"></i> Report this product
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Similar Products -->
+            <section class="similar-products">
+                <div class="section-header">
+                    <h2>Similar Products</h2>
+                    <a href="products.html">View All</a>
+                </div>
+                <div class="products-grid" id="similarProducts">
+                    <!-- Similar products will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Report Modal -->
+    <div class="modal" id="reportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Report Product</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="reportForm">
+                    <div class="form-group">
+                        <label>Reason for Report</label>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="reportReason" value="spam" required>
+                                <span>Spam or misleading information</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="reportReason" value="fraud">
+                                <span>Fraud or scam</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="reportReason" value="inappropriate">
+                                <span>Inappropriate content</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="reportReason" value="wrong_category">
+                                <span>Wrong category</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="reportReason" value="other">
+                                <span>Other reason</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reportDetails">Additional Details (Optional)</label>
+                        <textarea id="reportDetails" rows="4"
+                            placeholder="Please provide more details about your report..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-danger btn-block">Submit Report</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Report Submitted</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <i class="fas fa-check-circle success-icon"></i>
+                <p>Thank you for your report. Our team will review it shortly.</p>
+                <button class="btn btn-primary" onclick="hideModal(document.getElementById('successModal'))">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VillageConnect</h3>
+                    <p>Bridging rural producers with urban consumers through technology.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/mitulaghara" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/mitul-aghara-602a72332/" target="_blank"><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="products.html">Products</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="contact.html">Help Center</a>
+                    <a href="#">Community Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> support@villageconnect.com</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Gujarat, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 VillageConnect. All rights reserved. | Aghara Mitul</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login/Register Modals -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login to VillageConnect</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+                <p class="text-center mt-3">Don't have an account? <a href="#" id="switchToRegister">Register here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Your Account</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email Address</label>
+                        <input type="email" id="registerEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPhone">Phone Number</label>
+                        <input type="tel" id="registerPhone" required placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerVillage">Village Name</label>
+                        <input type="text" id="registerVillage" required placeholder="Enter your village name">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" required placeholder="Create a password">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Confirm Password</label>
+                        <input type="password" id="registerConfirmPassword" required
+                            placeholder="Confirm your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                </form>
+                <p class="text-center mt-3">Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/product-detail.js"></script>
+</body>
+
+</html>

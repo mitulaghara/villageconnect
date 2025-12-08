@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - VillageConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .about-header {
+            background: linear-gradient(rgba(46, 125, 50, 0.9), rgba(46, 125, 50, 0.7)), url('https://cdn.pixabay.com/photo/2016/11/08/05/11/children-1807511_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        .about-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .about-section {
+            padding: 80px 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mission-vision {
+            background: var(--light-color);
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .team-section {
+            text-align: center;
+        }
+
+        .team-member {
+            margin-top: 40px;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid var(--primary-color);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-hands-helping"></i>
+                <span>VillageConnect</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="products.html"><i class="fas fa-store"></i> Products</a>
+                <a href="post-product.html"><i class="fas fa-plus-circle"></i> Post Product</a>
+                <a href="dashboard.html"><i class="fas fa-user"></i> Dashboard</a>
+                <button id="logoutBtn" class="btn btn-danger" style="display:none;">Logout</button>
+                <div class="auth-buttons" id="authButtons">
+                    <button class="btn btn-outline" id="loginBtn">Login</button>
+                    <button class="btn btn-primary" id="registerBtn">Register</button>
+                </div>
+            </div>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="about-header">
+        <div class="container">
+            <h1>About Us</h1>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; color: rgba(255,255,255,0.9);">Connecting
+                Rural India with Digital Opportunities</p>
+        </div>
+    </header>
+
+    <!-- Our Story -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2 style="color: var(--primary-color);">Our Story</h2>
+                    <p>VillageConnect was born from a simple yet powerful idea: to bridge the gap between rural
+                        producers and urban markets. In many Indian villages, talented artisans and hardworking farmers
+                        struggle to find fair prices for their goods due to middlemen and lack of market access.</p>
+                    <p>We believe that technology can be the great equalizer. By providing a simple, accessible digital
+                        platform, we empower villagers to showcase their products directly to a wider audience, ensuring
+                        better livelihoods and sustainable community growth.</p>
+                </div>
+                <div class="about-img">
+                    <!-- <img src="https://cdn.pixabay.com/photo/2017/09/08/18/20/india-2729864_1280.jpg" alt="Village life"> -->
+                    <img src="./img/Banner-1.png" alt="Village life">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="about-section mission-vision">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 50px;">
+                <h2>Our Mission & Vision</h2>
+                <p>What drives us every single day</p>
+            </div>
+            <div class="dashboard-stats-grid">
+                <div class="value-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Empowerment</h3>
+                    <p>To give every rural creator the tools and confidence to succeed in the modern economy.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-link"></i>
+                    <h3>Connection</h3>
+                    <p>Building strong, direct bonds between the hands that create and the hearts that appreciate.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Sustainability</h3>
+                    <p>Promoting eco-friendly local products and supporting sustainable rural livelihoods.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="about-section team-section">
+        <div class="container">
+            <h2>Meet The Founder</h2>
+            <div class="team-member">
+                <img src="https://ui-avatars.com/api/?name=Mitul+Aghara&background=2e7d32&color=fff&size=150"
+                    alt="Mitul Aghara">
+                <h3>Mitul Aghara</h3>
+                <p style="color: var(--primary-color); font-weight: 500;">Founder & Lead Developer</p>
+                <p style="max-width: 600px; margin: 10px auto;">Passionate about using technology to solve real-world
+                    problems. Lead the vision and technical development of VillageConnect.</p>
+                <div class="social-links" style="justify-content: center; margin-top: 15px;">
+                    <a href="https://www.linkedin.com/in/mitul-aghara-602a72332/" target="_blank"
+                        style="background: #0077b5;"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" style="background: #333;"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VillageConnect</h3>
+                    <p>Empowering rural communities through digital connectivity.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="products.html">Products</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> info@villageconnect.com</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Gujrat, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 VillageConnect. All rights reserved. | Aghara Mitul</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <!-- Add simple script to handle auth button visibility since main.js might rely on some elements existing -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const loginBtn = document.getElementById('loginBtn');
+            const registerBtn = document.getElementById('registerBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            if (user) {
+                if (loginBtn) loginBtn.style.display = 'none';
+                if (registerBtn) registerBtn.style.display = 'none';
+                if (logoutBtn) logoutBtn.style.display = 'inline-block';
+            } else {
+                if (loginBtn) loginBtn.style.display = 'inline-block';
+                if (registerBtn) registerBtn.style.display = 'inline-block';
+                if (logoutBtn) logoutBtn.style.display = 'none';
+            }
+        });
+
+        // Modal handlers for login/register if they are clicked (reusing main.js logic ideally, 
+        // but since main.js expects modals in the DOM, we need to add them or just link to index.html for login)
+        // For simplicity, let's redirect login to index.html where modals are
+        document.getElementById('loginBtn')?.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+        document.getElementById('registerBtn')?.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+
+</html>
