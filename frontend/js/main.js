@@ -1,6 +1,10 @@
-// API Base URL - Change this to your backend URL
-const API_BASE_URL = 'http://localhost:5001/api';
-const BACKEND_URL = 'http://localhost:5001';
+// API Base URL - Dynamic for production
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5001/api'
+    : '/api';
+const BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5001'
+    : window.location.origin;
 
 // Global State
 let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
@@ -36,7 +40,8 @@ function initSocket() {
         console.warn('Socket.IO library not loaded');
         return;
     }
-    socket = io('http://localhost:5001');
+    // Auto-detect URL for socket connection
+    socket = io(BACKEND_URL);
 
     socket.on('connect', () => {
         console.log('Connected to VillageConnect server');

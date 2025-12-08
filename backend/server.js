@@ -43,13 +43,23 @@ const User = require('./models/User');
 const Product = require('./models/Product');
 const Notification = require('./models/Notification');
 
-// Configure Multer for file uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname);
+// Configure Multer for Cloudinary uploads
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+
+// Cloudinary Configuration
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'villageconnect',
+    allowed_formats: ['jpg', 'png', 'jpeg', 'webp'],
+    transformation: [{ width: 1000, height: 1000, crop: 'limit' }]
   }
 });
 
@@ -238,7 +248,8 @@ app.delete('/api/user/profile', authenticate, async (req, res) => {
 app.post('/api/products', authenticate, upload.array('images', 5), async (req, res) => {
   try {
     const { title, description, price, category, contact } = req.body;
-    const images = req.files?.map(file => file.filename) || [];
+    // For Cloudinary, file.path contains the URL. For local, it was file.filename.
+    const images = req.files?.map(file => file.path) || [];
 
     const product = new Product({
       title,
