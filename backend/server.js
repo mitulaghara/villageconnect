@@ -26,17 +26,40 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Create uploads directory if it doesn't exist
-if (!fs.existsSync('uploads')) {
-  fs.mkdirSync('uploads');
+// Create uploads directory if it doesn't exist (Only in local dev)
+if (process.env.NODE_ENV !== 'production' && !fs.existsSync('uploads')) {
+  try {
+    fs.mkdirSync('uploads');
+  } catch (err) {
+    console.log('Could not create uploads dir (likely read-only fs):', err.message);
+  }
 }
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/villageconnect', {
+console.log('Starting Server...');
+const dbUri = process.env.MONGODB_URI;
+
+if (!dbUri) {
+  console.error('CRITICAL ERROR: MONGODB_URI is undefined! Falling back to localhost (will fail on Vercel).');
+} else {
+  console.log(`Connection string found: ${dbUri.substring(0, 20)}...`);
+}
+
+mongoose.connect(dbUri || 'mongodb://localhost:27017/villageconnect', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000 // Timeout after 5s instead of 30s
 })
   .then(() => console.log('MongoDB Connected for VillageConnect'))
   .catch(err => console.log('MongoDB Connection Error:', err));
+
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    mongoState: mongoose.connection.readyState, // 0: disconnected, 1: connected, 2: connecting, 3: disconnecting
+    ip: req.ip
+  });
+});
 
 // Database Models
 const User = require('./models/User');

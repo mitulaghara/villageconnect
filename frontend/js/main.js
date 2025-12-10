@@ -279,7 +279,11 @@ async function handleLogin(e) {
             // Handle non-JSON response (likely a server error page)
             const text = await response.text();
             console.error('Server returned non-JSON response:', text);
-            showNotification('Server Error: Please check console for details', 'error');
+            // Show more specific error to help user debug
+            let errorMsg = `Server Error (${response.status})`;
+            if (response.status === 504) errorMsg = 'Server Timeout (Database Connection Failed)';
+            if (response.status === 500) errorMsg = 'Internal Server Error (Check Logs)';
+            showNotification(errorMsg, 'error');
         }
 
     } catch (error) {
@@ -342,7 +346,10 @@ async function handleRegister(e) {
             // Handle non-JSON response
             const text = await response.text();
             console.error('Server returned non-JSON response:', text);
-            showNotification('Server Error: Please check console for details', 'error');
+            let errorMsg = `Server Error (${response.status})`;
+            if (response.status === 504) errorMsg = 'Server Timeout (Database Connection Failed)';
+            if (response.status === 500) errorMsg = 'Internal Server Error (Check Logs)';
+            showNotification(errorMsg, 'error');
         }
     } catch (error) {
         console.error('Registration error:', error);
