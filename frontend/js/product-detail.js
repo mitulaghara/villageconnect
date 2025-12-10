@@ -174,9 +174,17 @@ function displayProductImages(images) {
         return;
     }
 
+    // Helper to get image URL
+    const getImageUrl = (imagePath) => {
+        if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+            return imagePath;
+        }
+        return `${BACKEND_URL}/uploads/${imagePath}`;
+    };
+
     // Set main image
     if (mainImage) {
-        mainImage.innerHTML = `<img src="${BACKEND_URL}/uploads/${images[0]}" alt="Main image" id="currentMainImage">`;
+        mainImage.innerHTML = `<img src="${getImageUrl(images[0])}" alt="Main image" id="currentMainImage">`;
     }
 
     // Create thumbnails
@@ -186,13 +194,13 @@ function displayProductImages(images) {
         images.forEach((image, index) => {
             const thumbnail = document.createElement('div');
             thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
-            thumbnail.innerHTML = `<img src="${BACKEND_URL}/uploads/${image}" alt="Image ${index + 1}">`;
+            thumbnail.innerHTML = `<img src="${getImageUrl(image)}" alt="Image ${index + 1}">`;
 
             thumbnail.addEventListener('click', () => {
                 // Update main image
                 const mainImg = document.getElementById('currentMainImage');
                 if (mainImg) {
-                    mainImg.src = `${BACKEND_URL}/uploads/${image}`;
+                    mainImg.src = getImageUrl(image);
                 }
 
                 // Update active thumbnail
