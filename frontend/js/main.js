@@ -251,32 +251,39 @@ async function handleLogin(e) {
             body: JSON.stringify({ email, password })
         });
 
-        const data = await response.json();
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+            const data = await response.json();
+            if (response.ok) {
+                currentUser = data.user;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                updateUIForLoggedInUser();
+                updateUserInfo();
+                hideModal(document.getElementById('loginModal'));
+                showNotification('Login successful!', 'success');
 
-        if (response.ok) {
-            currentUser = data.user;
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            updateUIForLoggedInUser();
-            updateUserInfo();
-            hideModal(document.getElementById('loginModal'));
-            showNotification('Login successful!', 'success');
+                if (socket) {
+                    socket.emit('join', currentUser.id);
+                }
 
-            // Join socket room
-            if (socket) {
-                socket.emit('join', currentUser.id);
-            }
+                loadNotifications();
 
-            loadNotifications();
-
-            // Refresh page if on dashboard or profile page
-            if (window.location.pathname.includes('dashboard.html') ||
-                window.location.pathname.includes('post-product.html')) {
-                window.location.reload();
+                if (window.location.pathname.includes('dashboard.html') ||
+                    window.location.pathname.includes('post-product.html')) {
+                    window.location.reload();
+                }
+            } else {
+                showNotification(data.error || 'Login failed', 'error');
             }
         } else {
-            showNotification(data.error || 'Login failed', 'error');
+            // Handle non-JSON response (likely a server error page)
+            const text = await response.text();
+            console.error('Server returned non-JSON response:', text);
+            showNotification('Server Error: Please check console for details', 'error');
         }
+
     } catch (error) {
+        console.error('Login error:', error);
         showNotification('Network error. Please try again.', 'error');
     }
 }
@@ -311,27 +318,34 @@ async function handleRegister(e) {
             body: JSON.stringify({ name, email, phone, village, password })
         });
 
-        const data = await response.json();
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+            const data = await response.json();
 
-        if (response.ok) {
-            currentUser = data.user;
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            updateUIForLoggedInUser();
-            updateUserInfo();
-            hideModal(document.getElementById('registerModal'));
-            showNotification('Registration successful!', 'success');
+            if (response.ok) {
+                currentUser = data.user;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                updateUIForLoggedInUser();
+                updateUserInfo();
+                hideModal(document.getElementById('registerModal'));
+                showNotification('Registration successful!', 'success');
 
-            // Join socket room
-            if (socket) {
-                socket.emit('join', currentUser.id);
+                if (socket) {
+                    socket.emit('join', currentUser.id);
+                }
+
+                window.location.href = 'dashboard.html';
+            } else {
+                showNotification(data.error || 'Registration failed', 'error');
             }
-
-            // Redirect to dashboard
-            window.location.href = 'dashboard.html';
         } else {
-            showNotification(data.error || 'Registration failed', 'error');
+            // Handle non-JSON response
+            const text = await response.text();
+            console.error('Server returned non-JSON response:', text);
+            showNotification('Server Error: Please check console for details', 'error');
         }
     } catch (error) {
+        console.error('Registration error:', error);
         showNotification('Network error. Please try again.', 'error');
     }
 }
