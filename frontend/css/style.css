@@ -42,7 +42,12 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 600;
     line-height: 1.3;
     margin-bottom: 1rem;
@@ -711,6 +716,7 @@ a:hover {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -948,8 +954,13 @@ a:hover {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .form-section {
@@ -1001,15 +1012,23 @@ a:hover {
 
 .image-preview {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .image-preview-item {
     position: relative;
-    height: 100px;
+    height: 120px;
     border-radius: 8px;
     overflow: hidden;
+    border: 2px solid var(--light-gray);
+    transition: var(--transition);
+}
+
+.image-preview-item:hover {
+    border-color: var(--primary-color);
+    transform: scale(1.02);
 }
 
 .image-preview-item img {
@@ -1022,16 +1041,24 @@ a:hover {
     position: absolute;
     top: 5px;
     right: 5px;
-    background: rgba(244, 67, 54, 0.8);
+    background: rgba(244, 67, 54, 0.9);
     color: white;
     border: none;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: var(--transition);
+    opacity: 0.8;
+}
+
+.image-preview-item .remove-image:hover {
+    opacity: 1;
+    background: rgba(244, 67, 54, 1);
+    transform: scale(1.1);
 }
 
 .quantity-unit {
@@ -1128,8 +1155,6 @@ a:hover {
 }
 
 .product-gallery {
-    position: sticky;
-    top: 20px;
     align-self: start;
 }
 
@@ -1732,25 +1757,25 @@ a:hover {
     h1 {
         font-size: 2rem;
     }
-    
+
     h2 {
         font-size: 1.7rem;
     }
-    
+
     .hero .container {
         grid-template-columns: 1fr;
         text-align: center;
     }
-    
+
     .hero-buttons {
         justify-content: center;
     }
-    
+
     .product-detail-container {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-    
+
     .form-row {
         grid-template-columns: 1fr;
     }
@@ -1769,15 +1794,15 @@ a:hover {
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         z-index: 1000;
     }
-    
+
     .nav-links.active {
         display: flex;
     }
-    
+
     .menu-toggle {
         display: block;
     }
-    
+
     .notification-bell {
         bottom: 20px;
         right: 20px;
@@ -1785,25 +1810,25 @@ a:hover {
         height: 50px;
         font-size: 1.2rem;
     }
-    
+
     .notifications-panel {
         width: 90%;
         right: 5%;
         bottom: 80px;
     }
-    
+
     .dashboard-stats {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .details-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .product-actions {
         flex-direction: column;
     }
-    
+
     .product-actions .btn {
         width: 100%;
     }
@@ -1813,43 +1838,43 @@ a:hover {
     .container {
         padding: 0 15px;
     }
-    
+
     .hero {
         padding: 40px 0;
     }
-    
+
     .hero-content h1 {
         font-size: 2rem;
     }
-    
+
     .category-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .products-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .filters {
         grid-template-columns: 1fr;
     }
-    
+
     .dashboard-stats {
         grid-template-columns: 1fr;
     }
-    
+
     .user-profile {
         flex-direction: column;
         text-align: center;
         gap: 20px;
     }
-    
+
     .dashboard-tabs {
         overflow-x: auto;
         flex-wrap: nowrap;
         -webkit-overflow-scrolling: touch;
     }
-    
+
     .tab-btn {
         white-space: nowrap;
         padding: 15px 20px;
@@ -1857,66 +1882,193 @@ a:hover {
 }
 
 /* Utility Classes */
-.mt-1 { margin-top: 10px; }
-.mt-2 { margin-top: 20px; }
-.mt-3 { margin-top: 30px; }
-.mt-4 { margin-top: 40px; }
-.mt-5 { margin-top: 50px; }
+.mt-1 {
+    margin-top: 10px;
+}
 
-.mb-1 { margin-bottom: 10px; }
-.mb-2 { margin-bottom: 20px; }
-.mb-3 { margin-bottom: 30px; }
-.mb-4 { margin-bottom: 40px; }
-.mb-5 { margin-bottom: 50px; }
+.mt-2 {
+    margin-top: 20px;
+}
 
-.ml-1 { margin-left: 10px; }
-.ml-2 { margin-left: 20px; }
-.ml-3 { margin-left: 30px; }
+.mt-3 {
+    margin-top: 30px;
+}
 
-.mr-1 { margin-right: 10px; }
-.mr-2 { margin-right: 20px; }
-.mr-3 { margin-right: 30px; }
+.mt-4 {
+    margin-top: 40px;
+}
 
-.p-1 { padding: 10px; }
-.p-2 { padding: 20px; }
-.p-3 { padding: 30px; }
-.p-4 { padding: 40px; }
-.p-5 { padding: 50px; }
+.mt-5 {
+    margin-top: 50px;
+}
 
-.d-flex { display: flex; }
-.d-block { display: block; }
-.d-none { display: none; }
+.mb-1 {
+    margin-bottom: 10px;
+}
 
-.flex-column { flex-direction: column; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.align-center { align-items: center; }
+.mb-2 {
+    margin-bottom: 20px;
+}
 
-.w-100 { width: 100%; }
-.h-100 { height: 100%; }
+.mb-3 {
+    margin-bottom: 30px;
+}
 
-.text-primary { color: var(--primary-color); }
-.text-danger { color: var(--danger-color); }
-.text-success { color: var(--success-color); }
-.text-warning { color: var(--warning-color); }
-.text-gray { color: var(--gray-color); }
+.mb-4 {
+    margin-bottom: 40px;
+}
 
-.bg-white { background: var(--white); }
-.bg-light { background: var(--light-color); }
-.bg-primary { background: var(--primary-color); }
-.bg-danger { background: var(--danger-color); }
+.mb-5 {
+    margin-bottom: 50px;
+}
 
-.rounded { border-radius: var(--border-radius); }
-.rounded-lg { border-radius: var(--border-radius-lg); }
+.ml-1 {
+    margin-left: 10px;
+}
 
-.shadow { box-shadow: var(--shadow); }
-.shadow-lg { box-shadow: var(--shadow-lg); }
+.ml-2 {
+    margin-left: 20px;
+}
 
-.cursor-pointer { cursor: pointer; }
+.ml-3 {
+    margin-left: 30px;
+}
 
-.position-relative { position: relative; }
-.position-absolute { position: absolute; }
-.position-sticky { position: sticky; }
+.mr-1 {
+    margin-right: 10px;
+}
+
+.mr-2 {
+    margin-right: 20px;
+}
+
+.mr-3 {
+    margin-right: 30px;
+}
+
+.p-1 {
+    padding: 10px;
+}
+
+.p-2 {
+    padding: 20px;
+}
+
+.p-3 {
+    padding: 30px;
+}
+
+.p-4 {
+    padding: 40px;
+}
+
+.p-5 {
+    padding: 50px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.d-block {
+    display: block;
+}
+
+.d-none {
+    display: none;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.text-primary {
+    color: var(--primary-color);
+}
+
+.text-danger {
+    color: var(--danger-color);
+}
+
+.text-success {
+    color: var(--success-color);
+}
+
+.text-warning {
+    color: var(--warning-color);
+}
+
+.text-gray {
+    color: var(--gray-color);
+}
+
+.bg-white {
+    background: var(--white);
+}
+
+.bg-light {
+    background: var(--light-color);
+}
+
+.bg-primary {
+    background: var(--primary-color);
+}
+
+.bg-danger {
+    background: var(--danger-color);
+}
+
+.rounded {
+    border-radius: var(--border-radius);
+}
+
+.rounded-lg {
+    border-radius: var(--border-radius-lg);
+}
+
+.shadow {
+    box-shadow: var(--shadow);
+}
+
+.shadow-lg {
+    box-shadow: var(--shadow-lg);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+.position-sticky {
+    position: sticky;
+}
 
 /* Animation for page transitions */
 .page-enter {
@@ -1942,7 +2094,9 @@ a:hover {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Toast notifications */
@@ -1983,6 +2137,7 @@ a:hover {
         transform: translateX(100%);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;

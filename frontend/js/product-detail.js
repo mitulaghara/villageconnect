@@ -260,8 +260,17 @@ function createSimilarProductCard(product) {
     const div = document.createElement('div');
     div.className = 'product-card';
 
+    // Helper to get image URL
+    const getImageUrl = (imagePath) => {
+        if (!imagePath) return 'https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80';
+        if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+            return imagePath;
+        }
+        return `${BACKEND_URL}/uploads/${imagePath}`;
+    };
+
     const imageUrl = product.images && product.images.length > 0
-        ? `${BACKEND_URL}/uploads/${product.images[0]}`
+        ? getImageUrl(product.images[0])
         : 'https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80';
 
     div.innerHTML = `

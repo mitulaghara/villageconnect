@@ -171,6 +171,8 @@ function handleFileSelect() {
     const fileInput = document.getElementById('productImages');
     const files = Array.from(fileInput.files);
 
+    if (files.length === 0) return;
+
     // Validate files
     const validFiles = files.filter(file => {
         const isValidType = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'].includes(file.type);
@@ -189,25 +191,56 @@ function handleFileSelect() {
         return true;
     });
 
-    // Limit to 5 files
-    if (selectedFiles.length + validFiles.length > 5) {
-        showNotification('You can upload maximum 5 images', 'error');
-        validFiles.splice(5 - selectedFiles.length);
+    // Check total limit
+    const remainingSlots = 5 - selectedFiles.length;
+
+    if (validFiles.length > remainingSlots) {
+        if (remainingSlots === 0) {
+            showNotification('Maximum 5 photos allowed. Please remove some photos to add new ones.', 'error');
+            return;
+        } else {
+            showNotification(`You can only add ${remainingSlots} more photo(s). Maximum 5 photos allowed.`, 'warning');
+            validFiles.splice(remainingSlots);
+        }
     }
 
     // Add to selected files
     selectedFiles.push(...validFiles);
 
+    // Show success message
+    if (validFiles.length > 0) {
+        showNotification(`${validFiles.length} photo(s) added successfully! Total: ${selectedFiles.length}/5`, 'success');
+    }
+
     // Update image preview
     updateImagePreview();
     updateReview();
+
+    // Reset file input to allow selecting the same files again if needed
+    fileInput.value = '';
 }
 
 function updateImagePreview() {
     const imagePreview = document.getElementById('imagePreview');
+    const uploadArea = document.getElementById('uploadArea');
+
     if (!imagePreview) return;
 
     imagePreview.innerHTML = '';
+
+    // Update upload area text based on selected files
+    if (uploadArea) {
+        const uploadText = uploadArea.querySelector('p:first-of-type');
+        if (uploadText) {
+            if (selectedFiles.length === 0) {
+                uploadText.innerHTML = '<strong>Click to select multiple photos at once</strong> or drag & drop here';
+            } else if (selectedFiles.length < 5) {
+                uploadText.innerHTML = `<strong>✓ ${selectedFiles.length}/5 photos selected</strong> - Click to add more`;
+            } else {
+                uploadText.innerHTML = '<strong>✓ 5/5 photos selected</strong> - Maximum reached';
+            }
+        }
+    }
 
     if (selectedFiles.length === 0) {
         return;
